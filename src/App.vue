@@ -1,9 +1,11 @@
 <script setup>
 import Dashboard from './features/dashboard/pages/Dashboard.vue';
+import ThemeSwitcher from './shared/components/ThemeSwitcher.vue';
 </script>
 
 <template>
-    <Dashboard></Dashboard>
+    <ThemeSwitcher />
+    <Dashboard />
 </template>
 
 <style scoped></style>

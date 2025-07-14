@@ -7,58 +7,73 @@
     /* Font family */
     --font-roboto: 'Roboto', sans-serif;
 
-    /* Dashboard-specific colors */
+    /* Light mode */
+    --color-text-primary: #1e293b;
     --color-dashboard-bg: #f8fafc;
-    --color-card: #ffffff;
-    --color-card-hover: #f1f5f9;
+    --color-card-bg: #ffffff;
+    --color-border: #e2e8f0;
 
-    /* Chart colors */
-    --color-chart-primary: #3b82f6;
-    --color-chart-secondary: #10b981;
+    /* Dark mode */
+    --color-dashboard-bg-dark: #0f172a;
+    --color-text-primary-dark: #fff;
+    --color-card-bg-dark: #1e293b;
+    --color-border-dark: #334155;
 }
 
 @layer base {
     body {
         font-family: var(--font-roboto);
         background-color: var(--color-dashboard-bg);
+        color: var(--color-text-primary);
+        transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* Dark mode styles */
+    html.dark {
+        color-scheme: dark;
+    }
+
+    html.dark body {
+        background-color: var(--color-dashboard-bg-dark);
+        color: var(--color-text-primary-dark) !important;
+    }
+
+    /* Target specific elements */
+    html.dark h1,
+    html.dark h2,
+    html.dark h3,
+    html.dark h4,
+    html.dark h5,
+    html.dark h6 {
+        color: var(--color-text-primary-dark) !important;
+    }
+
+    html.dark p,
+    html.dark span,
+    html.dark text {
+        color: var(--color-text-primary-dark) !important;
+    }
+
+    /* Target common text classes */
+    html.dark .text-gray-800,
+    html.dark .text-gray-900,
+    html.dark .text-black {
+        color: var(--color-text-primary-dark) !important;
+    }
+
+    /* Target card backgrounds */
+    html.dark .bg-white {
+        background-color: var(--color-card-bg-dark) !important;
     }
 }
 
 @layer components {
-    .dashboard-card {
-        @apply rounded-xl shadow-sm bg-[--color-card] p-6 transition-all;
-
-        &:hover {
-            @apply shadow-md bg-[--color-card-hover];
-        }
-    }
-
-    .dashboard-card-header {
-        @apply flex items-center justify-between mb-4;
-    }
-
-    .dashboard-card-title {
-        @apply text-lg font-medium text-gray-900;
-    }
-
-    .dashboard-grid {
-        @apply grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
-    }
-
-    .metric-value {
-        @apply text-3xl font-bold;
-    }
-
-    .metric-label {
-        @apply text-sm text-gray-500;
-    }
-
-    .chart-container {
-        @apply h-64 w-full;
+    .apexcharts-canvas svg {
+        border-radius: 0.5rem;
     }
 }
 
-/* Custom variants for controlling states */
+/* Custom variants for controlling states in case we need them */
 @custom-variant group-open {
     &:is(:where(.group):is(.open, [open], :popover-open, :open) *) {
         @slot;
