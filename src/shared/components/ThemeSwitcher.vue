@@ -31,7 +31,7 @@ onMounted(() => {
             <!-- Toggle Switch -->
             <button
                 @click="toggleTheme"
-                class="theme-switcher w-10 h-5 mx-1 rounded-full p-1 relative transition-colors duration-600 focus:outline-none cursor-pointer"
+                class="theme-switcher w-10 h-4 mx-1 rounded-full p-1 relative transition-colors duration-600 focus:outline-none cursor-pointer"
                 :class="isDarkMode ? 'bg-blue-700' : 'bg-gray-300'"
                 aria-label="Toggle dark mode"
             ></button>

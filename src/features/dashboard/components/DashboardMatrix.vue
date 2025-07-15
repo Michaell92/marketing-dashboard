@@ -14,7 +14,7 @@ const isDarkMode = computed(() => currentTheme.value === 'dark');
 </script>
 
 <template>
-    <div class="w-full max-w-[90vw] overflow-auto p-6 bg-white shadow-md rounded-lg mt-12">
+    <div class="w-full max-w-[90vw] overflow-auto p-6 bg-white shadow-md rounded-lg mt-12 text-xs">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
@@ -36,7 +36,7 @@ const isDarkMode = computed(() => currentTheme.value === 'dark');
                     <td
                         v-for="(value, colIndex) in Object.values(row)"
                         :key="colIndex"
-                        class="px-6 py-4 whitespace-nowrap text-sm text-gray-900"
+                        class="px-6 py-4 whitespace-nowrap text-xs text-gray-900"
                         :class="{
                             'font-bold': colIndex === 0, // Make the first column bold
                         }"
