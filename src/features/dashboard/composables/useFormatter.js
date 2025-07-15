@@ -34,9 +34,45 @@ export function useFormatter() {
         });
     };
 
+    const formatBarChartTopBarData = (data) => {
+        if (!data || data.length === 0) return [];
+
+        return data
+            .slice(1)
+            .map((row, index) => {
+                return row[0];
+            })
+            .filter((value) => {
+                return value !== 'Churn % p/m' && value !== 'Qualified Lead (3 sessions)';
+            });
+    };
+
+    const formatBarChartSeries = (data) => {
+        if (!data || data.length === 0) return [];
+
+        // Calculate monthly averages for each row
+        return data
+            .slice(1)
+            .map((row) => {
+                const length = row.length - 2; // Exclude the first two columns (date and identifier)
+
+                const total = row.slice(2).reduce((sum, value) => {
+                    return sum + (typeof value === 'number' ? value : 0);
+                }, 0);
+
+                const average = total / length;
+                return parseInt(average);
+            })
+            .filter((value) => {
+                return !isNaN(value) && value !== null && value !== 0;
+            });
+    };
+
     return {
         formatNumber,
         formatMatrixData,
         getMatrixDataAsNumbers,
+        formatBarChartTopBarData,
+        formatBarChartSeries,
     };
 }

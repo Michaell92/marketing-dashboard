@@ -18,6 +18,19 @@
     --color-text-primary-dark: #fff;
     --color-card-bg-dark: #1e293b;
     --color-border-dark: #334155;
+    --color-text-secondary-dark: #22c55e;
+
+    @keyframes pulse-slow {
+        0%,
+        100% {
+            opacity: 0.6;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.2);
+        }
+    }
 }
 
 @layer base {
@@ -61,8 +74,13 @@
         color: var(--color-text-primary-dark) !important;
     }
 
+    html.dark .text-blue-700 {
+        color: var(--color-text-secondary-dark) !important;
+    }
+
     /* Target card backgrounds */
-    html.dark .bg-white {
+    html.dark .bg-white,
+    html.dark .bg-gray-100 {
         background-color: var(--color-card-bg-dark) !important;
     }
 }
@@ -70,6 +88,10 @@
 @layer components {
     .apexcharts-canvas svg {
         border-radius: 0.5rem;
+    }
+
+    .pulse-slow {
+        animation: pulse-slow 1.5s infinite ease-in-out;
     }
 }
 

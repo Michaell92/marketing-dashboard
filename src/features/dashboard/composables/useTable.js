@@ -1,6 +1,6 @@
 // useTableData.js
 import { ref } from 'vue';
-import { useFormatter } from './useFormatter';
+import { useFormatter } from '@/features/dashboard/composables/useFormatter';
 import { parseExcel } from '@/shared/helpers/excelParser';
 
 const tableData = ref([]);
@@ -11,6 +11,8 @@ const { formatMatrixData, getMatrixDataAsNumbers } = useFormatter();
 const init = async (excelFile) => {
     try {
         const fetchedData = await parseExcel(excelFile);
+
+        // Store the parsed data
         parsedData.value = fetchedData;
         tableData.value = formatMatrixData(fetchedData);
         formattedNumberData.value = getMatrixDataAsNumbers(fetchedData);
@@ -19,7 +21,7 @@ const init = async (excelFile) => {
     }
 };
 
-export function useTableData() {
+export function useTable() {
     return {
         tableData,
         formattedNumberData,

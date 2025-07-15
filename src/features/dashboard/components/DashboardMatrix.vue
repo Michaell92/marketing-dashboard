@@ -1,11 +1,16 @@
 <script setup>
-import { onMounted } from 'vue';
+import { computed } from 'vue';
+import { useTheme } from '@/shared/composables/useTheme';
+
 const props = defineProps({
     tableData: {
         type: Array,
         default: () => [],
     },
 });
+
+const { currentTheme } = useTheme();
+const isDarkMode = computed(() => currentTheme.value === 'dark');
 </script>
 
 <template>
@@ -23,7 +28,11 @@ const props = defineProps({
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="(row, rowIndex) in tableData.slice(1)" :key="rowIndex">
+                <tr
+                    v-for="(row, rowIndex) in tableData.slice(1)"
+                    :key="rowIndex"
+                    :class="{ 'bg-blue-50': rowIndex % 2 === 0 && !isDarkMode }"
+                >
                     <td
                         v-for="(value, colIndex) in Object.values(row)"
                         :key="colIndex"

@@ -4,7 +4,7 @@ import { ref, onMounted, watch } from 'vue';
 const currentTheme = ref('light');
 
 // Initialize the theme from localStorage
-onMounted(() => {
+function initializeTheme() {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme === 'dark' || savedTheme === 'light') {
         currentTheme.value = savedTheme;
@@ -15,7 +15,7 @@ onMounted(() => {
         localStorage.setItem('theme', currentTheme.value);
     }
     applyThemeToDOM();
-});
+}
 
 // Watch for changes to theme and update localStorage and DOM
 watch(currentTheme, (newTheme) => {
@@ -39,5 +39,6 @@ export function useTheme() {
     return {
         currentTheme,
         toggleTheme,
+        initializeTheme,
     };
 }

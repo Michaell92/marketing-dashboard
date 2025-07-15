@@ -3,8 +3,6 @@ import * as XLSX from 'xlsx';
 export function parseExcel(file) {
     return new Promise(async (resolve, reject) => {
         try {
-            console.log('Processing file:', file);
-
             let data;
 
             // Handle both File/Blob objects and asset paths in case we we will use uploading option

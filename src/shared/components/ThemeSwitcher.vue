@@ -1,12 +1,16 @@
 <script setup>
-import { computed } from 'vue';
-import { useTheme } from '../composables/useTheme';
+import { computed, onMounted } from 'vue';
+import { useTheme } from '@/shared/composables/useTheme';
 
-const { currentTheme, toggleTheme } = useTheme();
+const { currentTheme, toggleTheme, initializeTheme } = useTheme();
 const isDarkMode = computed(() => currentTheme.value === 'dark');
+
+onMounted(() => {
+    initializeTheme();
+});
 </script>
 <template>
-    <div class="gap-2 m-8">
+    <div class="gap-2">
         <div class="relative flex items-center justify-end">
             <!-- Sun icon -->
             <svg
