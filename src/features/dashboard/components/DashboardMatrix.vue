@@ -9,12 +9,26 @@ const props = defineProps({
     },
 });
 
+const searchText = defineModel('searchText', {
+    type: String,
+    default: '',
+});
+
 const { currentTheme } = useTheme();
 const isDarkMode = computed(() => currentTheme.value === 'dark');
 </script>
 
 <template>
     <div class="w-full max-w-[90vw] overflow-auto p-6 bg-white shadow-md rounded-lg mt-12 text-xs">
+        <div>
+            <!-- search Bar -->
+            <input
+                v-model="searchText"
+                type="text"
+                placeholder="Search..."
+                class="mb-4 p-2 border border-gray-300 outline-blue-200 rounded w-full"
+            />
+        </div>
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>

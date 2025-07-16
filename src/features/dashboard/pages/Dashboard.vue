@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref, computed } from 'vue';
 import DashboardTitle from '@/features/dashboard/components/DashboardTitle.vue';
 import DashboardMatrix from '@/features/dashboard/components/DashboardMatrix.vue';
 import LineChart from '@/features/dashboard/components/LineChart.vue';
@@ -18,6 +18,16 @@ const chartTwoTitle = 'MMR Overview';
 const columnChartTitle = 'Monthly Averages';
 const benchmarkPerformance = 'Benchmark performance';
 
+// Search text for filtering the table data
+const searchText = ref('');
+const filteredTableData = computed(() => {
+    const filteredData = tableData.value.slice(1).filter((row) => {
+        return Object.values(row).some((value) => String(value).toLowerCase().includes(searchText.value.toLowerCase()));
+    });
+
+    return [tableData.value[0], ...filteredData]; // Include header row
+});
+
 // General dashboard data
 const { tableData, init } = useTable();
 
@@ -32,7 +42,7 @@ onMounted(() => {
 <template>
     <div class="h-full flex flex-col justify-start items-center m-6 mt-5 lg:m-12 lg:*:mx-12">
         <DashboardTitle :title="title" :description="description" />
-        <DashboardMatrix :tableData="tableData" />
+        <DashboardMatrix :tableData="filteredTableData" v-model:searchText="searchText" />
         <div class="flex gap-12 w-full flex-wrap items-center justify-center py-6 lg:px-6 mt-24 lg:flex-nowrap">
             <LineChart
                 :title="chartOneTitle"
