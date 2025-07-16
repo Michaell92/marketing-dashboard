@@ -20,7 +20,7 @@ const props = defineProps({
 
 <template>
     <div
-        class="flex items-center flex-wrap gap-8 justify-center sm:justify-between py-6 px-2 sm:px-4 lg:px-8 bg-gray-100 shadow-md rounded-lg"
+        class="flex items-center flex-wrap gap-8 sticky top-0 z-1000 justify-center sm:justify-between py-6 px-2 sm:px-4 lg:px-8 bg-gray-100 shadow-md rounded-lg"
     >
         <UsersTracker :usersData="props.usersData" />
         <ThemeSwitcher />
