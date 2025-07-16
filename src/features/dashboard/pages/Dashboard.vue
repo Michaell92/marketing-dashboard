@@ -33,7 +33,7 @@ onMounted(() => {
     <div class="h-full flex flex-col justify-start items-center m-6 mt-5 lg:m-12 lg:*:mx-12">
         <DashboardTitle :title="title" :description="description" />
         <DashboardMatrix :tableData="tableData" />
-        <div class="flex gap-12 w-full flex-wrap items-center justify-center p-6 mt-24 lg:flex-nowrap">
+        <div class="flex gap-12 w-full flex-wrap items-center justify-center py-6 lg:px-6 mt-24 lg:flex-nowrap">
             <LineChart
                 :title="chartOneTitle"
                 :chartOptions="lineChartUsersData.options"
@@ -45,7 +45,7 @@ onMounted(() => {
                 :series="lineChartMMRData.series"
             />
         </div>
-        <div class="flex flex-wrap items-center justify-center p-6 lg:flex-nowrap gap-12 w-full">
+        <div class="flex flex-wrap items-center justify-center py-6 lg:px-6 lg:flex-nowrap gap-12 w-full">
             <ColumnChart
                 :title="columnChartTitle"
                 :chartOptions="columnChartAveragesData.options"
